@@ -49,3 +49,25 @@ VALUES
 SELECT mode ,COUNT(coustomer)
 FROM payment
 GROUP BY mode;
+-- select columns k upr condition lgata h
+--from table name k upr
+-- where rows k upr
+--groupby columns
+--having group k upr
+--order by column asc k upr
+-- where group by k pehle and having group by k baad
+-- SELECT city 
+-- FROM payment
+-- WHERE city = 'denver'
+-- GROUP BY city
+-- HAVING max(mode) = 'netbanking';
+--update it is used to update the rows
+--we use set
+UPDATE payment
+SET mode = 'online'
+WHERE mode = 'netbanking';
+DELETE FROM payment
+    WHERE mode = 'debitcard';
+SELECT * FROM payment;
+-- delete r0w
+
