@@ -1,39 +1,14 @@
--- Online SQL Editor to Run SQL Online.
--- Use the editor to create new tables, insert data and all other SQL operations.
-
--- DROP TABLE IF EXISTS student;
--- CREATE TABLE student(
---     id INTEGER PRIMARY KEY,
---     name VARCHAR(50),
---     city VARCHAR(50),
---     roll INTEGER NOT NULL
--- );
--- INSERT INTO student (id, name, city, roll) 
---     VALUES
---     (1, 'shantanu', 'tilo', 20),
---     (2, 'shantanu', 'tilo', 22),
---     (3, 'shantanu', 'tilo', 202),
---     (4, 'shantanu', 'tilo', 25),
---     (5, 'shantanu', 'tilo', 28);
-
--- SELECT COUNT(roll) FROM student;
-
--- Aggregate functions collect data and return a single value.
--- The GROUP BY clause groups rows that have the same values into summary rows.
--- SELECT roll, COUNT(name) 
--- FROM student 
--- GROUP BY roll 
--- ORDER BY COUNT(name);
-
+-- DROP AND CREATE PAYMENT TABLE
 DROP TABLE IF EXISTS payment;
 CREATE TABLE payment(
-    coustomer_id INTEGER PRIMARY KEY,
-    coustomer VARCHAR(50),
+    customer_id INTEGER PRIMARY KEY,
+    customer VARCHAR(50),
     mode VARCHAR(20),
     city VARCHAR(20)
 );
 
-INSERT INTO payment (coustomer_id, coustomer, mode, city)
+-- INSERT DATA INTO PAYMENT TABLE
+INSERT INTO payment (customer_id, customer, mode, city)
 VALUES
     (101, 'oliva barret', 'netbanking', 'portland'),
     (102, 'ethan sinclair', 'creditcard', 'miami'),
@@ -46,28 +21,50 @@ VALUES
     (109, 'isabella martinez', 'netbanking', 'nashville'),
     (110, 'jackson brooks', 'creditcard', 'boston');
 
-SELECT mode ,COUNT(coustomer)
+-- SELECT MODE AND COUNT OF CUSTOMERS FROM PAYMENT TABLE
+SELECT mode, COUNT(customer)
 FROM payment
 GROUP BY mode;
--- select columns k upr condition lgata h
---from table name k upr
--- where rows k upr
---groupby columns
---having group k upr
---order by column asc k upr
--- where group by k pehle and having group by k baad
--- SELECT city 
--- FROM payment
--- WHERE city = 'denver'
--- GROUP BY city
--- HAVING max(mode) = 'netbanking';
---update it is used to update the rows
---we use set
-UPDATE payment
-SET mode = 'online'
-WHERE mode = 'netbanking';
-DELETE FROM payment
-    WHERE mode = 'debitcard';
-SELECT * FROM payment;
--- delete r0w
 
+-- DROP AND CREATE DEPARTMENT TABLE
+DROP TABLE IF EXISTS department;
+CREATE TABLE department(
+    id INTEGER PRIMARY KEY,
+    name VARCHAR(50)
+);
+
+-- INSERT VALUES INTO DEPARTMENT TABLE
+INSERT INTO department VALUES
+(101, 'english'),
+(102, 'hindi');
+
+-- DROP AND CREATE TEACHER TABLE
+DROP TABLE IF EXISTS teacher;
+CREATE TABLE teacher(
+    id INTEGER PRIMARY KEY, 
+    name VARCHAR(50),
+    dept_id INTEGER,
+    FOREIGN KEY (dept_id) REFERENCES department(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+
+-- INSERT VALUES INTO TEACHER TABLE
+INSERT INTO teacher 
+VALUES
+(101, 'shaantanu', 101),
+(102, 'sinha', 102);
+
+-- SELECT ALL RECORDS FROM THE TEACHER TABLE
+SELECT * FROM teacher;
+
+-- DROP TEACHER TABLE
+DROP TABLE IF EXISTS teacher;
+
+-- UPDATE DEPARTMENT TABLE
+UPDATE department 
+SET id = 103
+WHERE id = 102;
+
+-- SELECT ALL RECORDS FROM THE DEPARTMENT TABLE
+SELECT * FROM department;
